@@ -9,11 +9,6 @@ public class HackingMinigame : MonoBehaviour
     public Text tooltip;
     GameObject[] gameObjects;
     bool hacking = false;
-    void Start()
-    {
-        //ddisable after testing
-        //StartHack();
-    }
 
     private void Update()
     {
@@ -23,8 +18,6 @@ public class HackingMinigame : MonoBehaviour
             if (gameObjects.Length == 0)
                 FinishHack();
         }
-        if (Input.GetKeyDown(KeyCode.E))
-            DestroyBlocks(15);
     }
 
     public void ClickButton() //useless for now
@@ -75,9 +68,9 @@ public class HackingMinigame : MonoBehaviour
     }
     private IEnumerator Tooltip1()
     {
-        tooltip.text = "Destroy all blocks!";
+        tooltip.text = "Click all blocks!";
         tooltip.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.1f);
         StartHack2();
         tooltip.gameObject.SetActive(false);
     }
@@ -85,7 +78,7 @@ public class HackingMinigame : MonoBehaviour
     {
         tooltip.text = "Password saved!";
         tooltip.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.1f);
         tooltip.gameObject.SetActive(false);
     }
 }

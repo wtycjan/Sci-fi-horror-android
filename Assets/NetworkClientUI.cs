@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkClientUI : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class NetworkClientUI : MonoBehaviour
     public Hacking hacking;
     private void OnGUI()
     {
+
+        /*
         string ipaddress = LocalIPAddress();
-        //GUI.Box(new Rect(10, Screen.height - 50, 200, 150), ipaddress);
-        //GUI.Label(new Rect(20, Screen.height - 30, 200, 90), "Status:" + client.isConnected);
+        GUI.Box(new Rect(10, Screen.height - 50, 200, 150), ipaddress);
+        GUI.Label(new Rect(20, Screen.height - 30, 200, 90), "Status:" + client.isConnected);
 
         if (!client.isConnected)
         {
@@ -23,13 +26,21 @@ public class NetworkClientUI : MonoBehaviour
                 Connect();
             }
         }
+        */
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         client = new NetworkClient();
         client.RegisterHandler(888, ServerRecieveMessage);
+        Connect();
+    }
+    private void Update()
+    {
+        if (!client.isConnected)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
     void ServerRecieveMessage(NetworkMessage message)
     {
@@ -55,9 +66,10 @@ public class NetworkClientUI : MonoBehaviour
 
 
     }
-    private void Connect()
+    public void Connect()
     {
-        client.Connect("192.168.8.143", 25000);
+        //192.168.8.143
+        client.Connect(PlayerPrefs.GetString("IP"), 25000);
     }
 
     static public void SendBtnInfo(int bDelta)
@@ -71,11 +83,7 @@ public class NetworkClientUI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     public string LocalIPAddress()
     {
         IPHostEntry host;
@@ -91,4 +99,5 @@ public class NetworkClientUI : MonoBehaviour
         }
         return localIP;
     }
+
 }

@@ -65,7 +65,9 @@
     <Compile Include="Assets\Hacking.cs" />
     <Compile Include="Assets\HackingMinigame.cs" />
     <Compile Include="Assets\NetworkClientUI.cs" />
+    <Compile Include="Assets\Sounds.cs" />
     <Compile Include="Assets\SquareAttributes.cs" />
+    <Compile Include="Assets\UI.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Tycjan/Documents/UnityProjectsss/Scifi Controller/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
