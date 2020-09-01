@@ -10,24 +10,8 @@ using UnityEngine.SceneManagement;
 public class NetworkClientUI : MonoBehaviour
 {
     static NetworkClient client;
-    public Hacking hacking;
-    private void OnGUI()
-    {
-
-        /*
-        string ipaddress = LocalIPAddress();
-        GUI.Box(new Rect(10, Screen.height - 50, 200, 150), ipaddress);
-        GUI.Label(new Rect(20, Screen.height - 30, 200, 90), "Status:" + client.isConnected);
-
-        if (!client.isConnected)
-        {
-            if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "Connect"))
-            {
-                Connect();
-            }
-        }
-        */
-    }
+    public NetworkCommands commands;
+    public DoorsButtton doors;
 
     void Start()
     {
@@ -39,6 +23,7 @@ public class NetworkClientUI : MonoBehaviour
     {
         if (!client.isConnected)
         {
+            //Remove cc before build!!
             SceneManager.LoadScene(0);
         }
     }
@@ -48,21 +33,27 @@ public class NetworkClientUI : MonoBehaviour
         msg.value = message.ReadMessage<StringMessage>().value;
 
         if (msg.value == "OpenHelp")
-            hacking.OpenHelp();
+            commands.OpenHelp();
         else if (msg.value == "CloseHelp")
-            hacking.CloseHelp();
+            commands.CloseHelp();
         else if (msg.value == "HackingStart")
-            hacking.HackingStart();
+            commands.HackingStart();
         else if (msg.value == "HackingEnd")
-            hacking.HackingEnd();
+            commands.HackingEnd();
         else if (msg.value == "OpenPasswords")
-            hacking.OpenPasswords();
+            commands.OpenPasswords();
         else if (msg.value == "ClosePasswords")
-            hacking.ClosePasswords();
+            commands.ClosePasswords();
         else if (msg.value.Substring(0, 4) == "Pswd")
             GameData.password = (msg.value.Substring(msg.value.Length - 5));
         else if (msg.value.Substring(0, 6) == "Blocks")
-            hacking.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
+            commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
+        else if (msg.value == "UnlockDoor1")
+            doors.UnlockDoor1();
+        else if (msg.value == "OpenLockpicking")
+            commands.OpenLockpicking();
+        else if (msg.value == "CloseLockpicking")
+            commands.CloseLockpicking();
 
 
     }
@@ -72,7 +63,7 @@ public class NetworkClientUI : MonoBehaviour
         client.Connect(PlayerPrefs.GetString("IP"), 25000);
     }
 
-    static public void SendBtnInfo(int bDelta)
+    static public void SendBtnInfo(int bDelta)  //doors
     {
         if(client.isConnected)
         {
@@ -80,6 +71,17 @@ public class NetworkClientUI : MonoBehaviour
             msg.value = bDelta +"";
             client.Send(888, msg);
             Debug.Log("msg sent"+msg.value);
+        }
+    }
+
+    static public void SendLockpicking(string bDelta)  //lockpiicking
+    {
+        if (client.isConnected)
+        {
+            StringMessage msg = new StringMessage();
+            msg.value = bDelta;
+            client.Send(888, msg);
+            Debug.Log("msg sent" + msg.value);
         }
     }
 

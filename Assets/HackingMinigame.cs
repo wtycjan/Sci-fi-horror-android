@@ -54,7 +54,7 @@ public class HackingMinigame : MonoBehaviour
     void FinishHack()
     {
         StartCoroutine("Tooltip2");
-        var parent = GetComponentInParent<Hacking>();
+        var parent = GameObject.FindGameObjectWithTag("Canvas").GetComponent<NetworkCommands>();
         parent.AddPassword(GameData.password);
         hacking = false;
     }

@@ -62,9 +62,10 @@
   <ItemGroup>
     <Compile Include="Assets\DoorsButtton.cs" />
     <Compile Include="Assets\GameData.cs" />
-    <Compile Include="Assets\Hacking.cs" />
     <Compile Include="Assets\HackingMinigame.cs" />
+    <Compile Include="Assets\LockpickingMinigame.cs" />
     <Compile Include="Assets\NetworkClientUI.cs" />
+    <Compile Include="Assets\NetworkCommands.cs" />
     <Compile Include="Assets\Sounds.cs" />
     <Compile Include="Assets\SquareAttributes.cs" />
     <Compile Include="Assets\UI.cs" />
