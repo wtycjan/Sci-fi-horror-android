@@ -5,16 +5,18 @@ using UnityEngine.UI;
 public class NetworkCommands : MonoBehaviour
 {
     public Image passwords;
-    public Image hackingScreen;
+    public Image hackingScreen1;
+    public Image hackingScreen2;
     public Image lockpicking;
-
+    public Image monster;
+    public Image player;
     public void OpenHelp()
     {
-        gameObject.SetActive(true);
+        hackingScreen1.gameObject.SetActive(true);
     }
     public void CloseHelp()
     {
-        gameObject.SetActive(false);
+        hackingScreen1.gameObject.SetActive(false);
         HackingEnd();
     }
 
@@ -32,16 +34,16 @@ public class NetworkCommands : MonoBehaviour
     }
     public void HackingStart()
     {
-        hackingScreen.gameObject.SetActive(true);
-        hackingScreen.GetComponent<HackingMinigame>().StartHack();
+        hackingScreen2.gameObject.SetActive(true);
+        hackingScreen2.GetComponent<HackingMinigame>().StartHack();
     }
     public void HackingEnd()
     {
-        hackingScreen.gameObject.SetActive(false);
+        hackingScreen2.gameObject.SetActive(false);
     }
     public void DestroyBlocks(int x)
     {
-        hackingScreen.GetComponent<HackingMinigame>().DestroyBlocks(x);
+        hackingScreen2.GetComponent<HackingMinigame>().DestroyBlocks(x);
     }
     public void OpenLockpicking()
     {
@@ -50,5 +52,15 @@ public class NetworkCommands : MonoBehaviour
     public void CloseLockpicking()
     {
         lockpicking.gameObject.SetActive(false);
+    }
+    public void MonsterPosition(float x, float y)
+    {
+        //magic numbers foor location adjustment
+        monster.rectTransform.localPosition = new Vector2(-9.2f*y -102 , 6.7f*x+2);
+    }
+    public void PlayerPosition(float x, float y)
+    {
+        //magic numbers foor location adjustment
+        player.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x+2);
     }
 }

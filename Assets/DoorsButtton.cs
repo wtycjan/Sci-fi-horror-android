@@ -50,7 +50,7 @@ public class DoorsButtton : MonoBehaviour
             }
             b.interactable = false;
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         foreach (Button b in buttons)
         {
             if (b == null)

@@ -21,18 +21,30 @@ public class NetworkClientUI : MonoBehaviour
     }
     private void Update()
     {
-        if (!client.isConnected)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //Remove cc before build!!
             SceneManager.LoadScene(0);
         }
+        
     }
     void ServerRecieveMessage(NetworkMessage message)
     {
         StringMessage msg = new StringMessage();
         msg.value = message.ReadMessage<StringMessage>().value;
 
-        if (msg.value == "OpenHelp")
+        if (msg.value.Substring(0, 8) == "monster:")
+        {
+            string[] words = msg.value.Split(' ');
+            commands.MonsterPosition(float.Parse(words[1]), float.Parse(words[2]));
+        }
+        else if (msg.value.Substring(0, 7) == "player:")
+        {
+            string[] words = msg.value.Split(' ');
+            commands.PlayerPosition(float.Parse(words[1]), float.Parse(words[2]));
+        }
+        else if (msg.value.Substring(0, 6) == "Blocks")
+            commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
+        else if (msg.value == "OpenHelp")
             commands.OpenHelp();
         else if (msg.value == "CloseHelp")
             commands.CloseHelp();
@@ -46,8 +58,6 @@ public class NetworkClientUI : MonoBehaviour
             commands.ClosePasswords();
         else if (msg.value.Substring(0, 4) == "Pswd")
             GameData.password = (msg.value.Substring(msg.value.Length - 5));
-        else if (msg.value.Substring(0, 6) == "Blocks")
-            commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
         else if (msg.value == "UnlockDoor1")
             doors.UnlockDoor1();
         else if (msg.value == "OpenLockpicking")
@@ -61,6 +71,7 @@ public class NetworkClientUI : MonoBehaviour
     {
         //192.168.8.143
         client.Connect(PlayerPrefs.GetString("IP"), 25000);
+        //StartCoroutine(WaitForConnection());
     }
 
     static public void SendBtnInfo(int bDelta)  //doors
@@ -101,5 +112,12 @@ public class NetworkClientUI : MonoBehaviour
         }
         return localIP;
     }
+    private IEnumerator WaitForConnection()
+    {
+        yield return new WaitForSeconds(1);
+        while (!client.isConnected)
+            yield return new WaitForSeconds(.5f);
+    }
+
 
 }
