@@ -72,6 +72,12 @@ public class NetworkClientUI : MonoBehaviour
             commands.LockpickingTutorial();
         else if (msg.value == "CloseLockpickingTutorial")
             commands.CloseLockpickingTutorial();
+        else if (msg.value == "ExitGame")
+            commands.ExitGame();
+        else if (msg.value == "Pause")
+            commands.Pause();
+        else if (msg.value == "Unpause")
+            commands.Unpause();
 
     }
     public void Connect()

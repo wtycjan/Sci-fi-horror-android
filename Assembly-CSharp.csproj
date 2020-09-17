@@ -69,8 +69,8 @@
     <Compile Include="Assets\Scripts\NetworkCommands.cs" />
     <Compile Include="Assets\Scripts\Sounds.cs" />
     <Compile Include="Assets\Scripts\SquareAttributes.cs" />
+    <Compile Include="Assets\Scripts\TVStatic.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
-    <Compile Include="Assets\statiic\TVStatic.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

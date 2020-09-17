@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     private bool display = false;
     private void Start()
     {
+        GameData.respawn = false;
         client = new NetworkClient();
         //GameData.IP = "192.168.8.143";
         input.text = PlayerPrefs.GetString("IP");

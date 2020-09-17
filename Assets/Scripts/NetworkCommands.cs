@@ -13,6 +13,7 @@ public class NetworkCommands : MonoBehaviour
     public Image monster;
     public Image player;
     public Image endcredits;
+    public GameObject pauseScreen;
 
 
     public void OpenHelp()
@@ -61,12 +62,12 @@ public class NetworkCommands : MonoBehaviour
     public void MonsterPosition(float x, float y)
     {
         //magic numbers foor location adjustment
-        monster.rectTransform.localPosition = new Vector2(-9.2f*y -102 , 6.7f*x+2);
+        monster.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x + 2);
     }
     public void PlayerPosition(float x, float y)
     {
         //magic numbers foor location adjustment
-        player.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x+2);
+        player.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x + 2);
     }
     public void EndCredits()
     {
@@ -75,6 +76,7 @@ public class NetworkCommands : MonoBehaviour
     public void Restart()
     {
         print("restart");
+        GameData.respawn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
@@ -85,5 +87,17 @@ public class NetworkCommands : MonoBehaviour
     public void CloseLockpickingTutorial()
     {
         lockpickingTutorial.gameObject.SetActive(false);
+    }
+    public void ExitGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void Pause()
+    {
+        pauseScreen.SetActive(true);
+    }
+    public void Unpause()
+    {
+        pauseScreen.SetActive(false);
     }
 }

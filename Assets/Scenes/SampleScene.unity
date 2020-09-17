@@ -2921,6 +2921,7 @@ MonoBehaviour:
   monster: {fileID: 1968565091}
   player: {fileID: 1175297097}
   endcredits: {fileID: 1843179798}
+  pauseScreen: {fileID: 1422526350}
 --- !u!1 &516702414
 GameObject:
   m_ObjectHideFlags: 0
