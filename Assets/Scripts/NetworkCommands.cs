@@ -14,8 +14,24 @@ public class NetworkCommands : MonoBehaviour
     public Image player;
     public Image endcredits;
     public GameObject pauseScreen;
+    private Doppler doppler;
+    public GameObject alarm;
 
-
+    private void Start()
+    {
+        doppler = player.GetComponent<Doppler>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            OpenHelp();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            HackingStart();
+        }
+    }
     public void OpenHelp()
     {
         hackingScreen1.gameObject.SetActive(true);
@@ -99,5 +115,13 @@ public class NetworkCommands : MonoBehaviour
     public void Unpause()
     {
         pauseScreen.SetActive(false);
+    }
+    public void PlayerState(int x)
+    {
+        doppler.SendMessage("PlayerState", x);
+    }
+    public void Alarms(int x)
+    {
+        alarm.SendMessage("Alarms", x);
     }
 }

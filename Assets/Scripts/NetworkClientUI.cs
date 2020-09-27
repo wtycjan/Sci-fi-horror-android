@@ -37,47 +37,51 @@ public class NetworkClientUI : MonoBehaviour
             string[] words = msg.value.Split(' ');
             commands.MonsterPosition(float.Parse(words[1]), float.Parse(words[2]));
         }
-        else if (msg.value.Length > 6 && msg.value.Substring(0, 7) == "player:")
+        if (msg.value.Length > 6 && msg.value.Substring(0, 7) == "player:")
         {
             string[] words = msg.value.Split(' ');
             commands.PlayerPosition(float.Parse(words[1]), float.Parse(words[2]));
         }
-        else if (msg.value.Length > 5 && msg.value.Substring(0, 6) == "Blocks")
+        if (msg.value.Length > 5 && msg.value.Substring(0, 6) == "Blocks")
             commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
-        else if (msg.value == "OpenHelp")
+        if (msg.value == "OpenHelp")
             commands.OpenHelp();
-        else if (msg.value == "CloseHelp")
+        if (msg.value == "CloseHelp")
             commands.CloseHelp();
-        else if (msg.value == "HackingStart")
+        if (msg.value == "HackingStart")
             commands.HackingStart();
-        else if (msg.value == "HackingEnd")
+        if (msg.value == "HackingEnd")
             commands.HackingEnd();
-        else if (msg.value == "OpenPasswords")
+        if (msg.value == "OpenPasswords")
             commands.OpenPasswords();
-        else if (msg.value == "ClosePasswords")
+        if (msg.value == "ClosePasswords")
             commands.ClosePasswords();
-        else if (msg.value.Length > 3 && msg.value.Substring(0, 4) == "Pswd")
+        if (msg.value.Length > 3 && msg.value.Substring(0, 4) == "Pswd")
             GameData.password = (msg.value.Substring(msg.value.Length - 5));
-        else if (msg.value == "UnlockDoor1")
+        if (msg.value == "UnlockDoor1")
             doors.UnlockDoor1();
-        else if (msg.value == "OpenLockpicking")
+        if (msg.value == "OpenLockpicking")
             commands.OpenLockpicking();
-        else if (msg.value == "CloseLockpicking")
+        if (msg.value == "CloseLockpicking")
             commands.CloseLockpicking();
-        else if (msg.value == "EndCredits")
+        if (msg.value == "EndCredits")
             commands.EndCredits();
-        else if (msg.value == "Restart")
+        if (msg.value == "Restart")
             commands.Restart();
-        else if (msg.value == "LockpickingTutorial")
+        if (msg.value == "LockpickingTutorial")
             commands.LockpickingTutorial();
-        else if (msg.value == "CloseLockpickingTutorial")
+        if (msg.value == "CloseLockpickingTutorial")
             commands.CloseLockpickingTutorial();
-        else if (msg.value == "ExitGame")
+        if (msg.value == "ExitGame")
             commands.ExitGame();
-        else if (msg.value == "Pause")
+        if (msg.value == "Pause")
             commands.Pause();
-        else if (msg.value == "Unpause")
+        if (msg.value == "Unpause")
             commands.Unpause();
+        if (msg.value.Length > 10 && msg.value.Substring(0, 11) == "PlayerState")
+            commands.PlayerState(int.Parse(msg.value.Substring(msg.value.Length - 1)));
+        if (msg.value.Length > 4 && msg.value.Substring(0, 5) == "Alarm")
+            commands.Alarms(int.Parse(msg.value.Substring(msg.value.Length - 1)));
 
     }
     public void Connect()

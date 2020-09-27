@@ -44,9 +44,9 @@ public class HackingMinigame : MonoBehaviour
         //create new buttons
         for (int j = 0; j < 7; j++)
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 14; i++)
             {
-                GameObject btn = Instantiate(prefabBtn, new Vector3(transform.position.x + i * 1.442F, transform.position.y - j * 1.42F, 0), Quaternion.identity);
+                GameObject btn = Instantiate(prefabBtn, new Vector3(transform.position.x + i * 1.4F, transform.position.y - j * 1.4F, 0), Quaternion.identity);
                 btn.transform.SetParent(transform);
                 btn.transform.localScale = new Vector3(0.014f, 0.0187f, 0.01737791f);
             }
