@@ -7,10 +7,10 @@ public class TVStatic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!GameData.respawn)
-            StartCoroutine(Hide(9));
-        else
+        if (GameData.respawn)
             StartCoroutine(Hide(2));
+        else
+            gameObject.SetActive(false);
     }
 
     IEnumerator Hide(int seconds)

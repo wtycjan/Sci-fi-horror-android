@@ -9,6 +9,7 @@ public class HackingMinigame : MonoBehaviour
     public Text tooltip;
     GameObject[] gameObjects;
     public NetworkClientUI network;
+    public GameObject cam;
     bool hacking = false;
 
     private void Update()
@@ -42,13 +43,16 @@ public class HackingMinigame : MonoBehaviour
     {
         password.text = GameData.password;
         //create new buttons
-        for (int j = 0; j < 7; j++)
+        //Vector2 viewPos = new Vector2(cam.pixelWidth, cam)
+
+        for (float j = 0; j < 7; j++)
         {
-            for (int i = 0; i < 14; i++)
+            for (float i = 0; i < 14; i++)
             {
-                GameObject btn = Instantiate(prefabBtn, new Vector3(transform.position.x + i * 1.4F, transform.position.y - j * 1.4F, 0), Quaternion.identity);
+                GameObject btn = Instantiate(prefabBtn, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 btn.transform.SetParent(transform);
-                btn.transform.localScale = new Vector3(0.014f, 0.0187f, 0.01737791f);
+                btn.transform.localScale = new Vector2(0.014f, 0.018f);
+                btn.transform.localPosition = new Vector2(btn.transform.localPosition.x + 0.7f * i, btn.transform.localPosition.y - 0.9f* j);
             }
         }
         hacking = true;

@@ -21,17 +21,7 @@ public class NetworkCommands : MonoBehaviour
     {
         doppler = player.GetComponent<Doppler>();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            OpenHelp();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            HackingStart();
-        }
-    }
+
     public void OpenHelp()
     {
         hackingScreen1.gameObject.SetActive(true);
@@ -78,12 +68,12 @@ public class NetworkCommands : MonoBehaviour
     public void MonsterPosition(float x, float y)
     {
         //magic numbers foor location adjustment
-        monster.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x + 2);
+        monster.rectTransform.localPosition = new Vector2(-9.2f * y - 143.2F, 6.7f * x + 2);
     }
     public void PlayerPosition(float x, float y)
     {
         //magic numbers foor location adjustment
-        player.rectTransform.localPosition = new Vector2(-9.2f * y - 102, 6.7f * x + 2);
+        player.rectTransform.localPosition = new Vector2(-9.2f * y - 143.2F, 6.7f * x + 2);
     }
     public void EndCredits()
     {

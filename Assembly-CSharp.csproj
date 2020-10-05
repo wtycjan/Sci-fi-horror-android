@@ -69,9 +69,14 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\Scripts\HackingMinigame.cs" />
+    <Compile Include="Assets\Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\LockpickingMinigame.cs" />
+    <Compile Include="Assets\Scripts\MotionSensors.cs" />
     <Compile Include="Assets\Scripts\NetworkClientUI.cs" />
     <Compile Include="Assets\Scripts\NetworkCommands.cs" />
+    <Compile Include="Assets\Scripts\playerTest.cs" />
+    <Compile Include="Assets\Scripts\ReliableOnTriggerExit.cs" />
+    <Compile Include="Assets\Scripts\SensorDetect.cs" />
     <Compile Include="Assets\Scripts\Sounds.cs" />
     <Compile Include="Assets\Scripts\SquareAttributes.cs" />
     <Compile Include="Assets\Scripts\TVStatic.cs" />
