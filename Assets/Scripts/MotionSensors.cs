@@ -6,7 +6,12 @@ public class MotionSensors : MonoBehaviour
 {
     public GameObject motion1, motion2, motion3, motion4, motion5, motion6;
     private bool m1, m2, m3, m4, m5, m6;
-
+    private Sounds sounds;
+    private AudioSource audioSrc;
+    private void Start()
+    {
+        sounds = GameObject.FindGameObjectWithTag("SoundController").GetComponent<Sounds>();
+    }
     public void Motion1()
     {
         if (motion1.activeSelf == false &&!m1)
@@ -174,6 +179,7 @@ public class MotionSensors : MonoBehaviour
                 m6 = true;
                 break;
         }
+        sounds.Sound5();
         yield return new WaitForSeconds(2f);
         switch (i)
         {
@@ -234,6 +240,8 @@ public class MotionSensors : MonoBehaviour
         {
             case 1:
                 motion1.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion1.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m1 = true;
                 BoxCollider2D[] coliders = motion1.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)
@@ -243,6 +251,8 @@ public class MotionSensors : MonoBehaviour
                 break;
             case 2:
                 motion2.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion2.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m2 = true;
                 coliders = motion2.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)
@@ -252,6 +262,8 @@ public class MotionSensors : MonoBehaviour
                 break;
             case 3:
                 motion3.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion3.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m3 = true;
                 coliders = motion3.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)
@@ -261,6 +273,8 @@ public class MotionSensors : MonoBehaviour
                 break;
             case 4:
                 motion4.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion4.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m4 = true;
                 coliders = motion4.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)
@@ -270,6 +284,8 @@ public class MotionSensors : MonoBehaviour
                 break;
             case 5:
                 motion5.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion5.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m5 = true;
                 coliders = motion5.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)
@@ -279,6 +295,8 @@ public class MotionSensors : MonoBehaviour
                 break;
             case 6:
                 motion6.GetComponent<Animator>().SetBool("Disable", true);
+                audioSrc = motion6.GetComponent<AudioSource>();
+                StartCoroutine(AudioFadeOut.FadeOut(audioSrc, .4f));
                 m6 = true;
                 coliders = motion6.GetComponents<BoxCollider2D>();
                 foreach (BoxCollider2D col in coliders)

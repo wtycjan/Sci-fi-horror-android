@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Alarm.cs" />
+    <Compile Include="Assets\Scripts\AudioFadeOut.cs" />
     <Compile Include="Assets\Scripts\DoorsButtton.cs" />
     <Compile Include="Assets\Scripts\DoorsText.cs" />
     <Compile Include="Assets\Scripts\Doppler.cs" />

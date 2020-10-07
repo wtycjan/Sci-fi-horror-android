@@ -8,6 +8,7 @@ public class Sounds : MonoBehaviour
     public AudioClip audio2;
     public AudioClip audio3;
     public AudioClip audio4;
+    public AudioClip audio5;
     private AudioSource source;
     void Start()
     {
@@ -29,6 +30,10 @@ public class Sounds : MonoBehaviour
     public void Sound4()
     {
         source.PlayOneShot(audio4);
+    }
+    public void Sound5()
+    {
+        source.PlayOneShot(audio5);
     }
 
     public void HackingButtonSounds()

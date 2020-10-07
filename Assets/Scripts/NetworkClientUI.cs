@@ -82,6 +82,8 @@ public class NetworkClientUI : MonoBehaviour
             commands.PlayerState(int.Parse(msg.value.Substring(msg.value.Length - 1)));
         if (msg.value.Length > 4 && msg.value.Substring(0, 5) == "Alarm")
             commands.Alarms(int.Parse(msg.value.Substring(msg.value.Length - 1)));
+        if (msg.value.Length > 11 && msg.value.Substring(0, 12) == "MonsterState")
+            commands.MonsterState(int.Parse(msg.value.Substring(msg.value.Length - 1)));
 
     }
     public void Connect()

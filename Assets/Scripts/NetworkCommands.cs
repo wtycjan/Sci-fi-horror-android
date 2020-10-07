@@ -14,12 +14,13 @@ public class NetworkCommands : MonoBehaviour
     public Image player;
     public Image endcredits;
     public GameObject pauseScreen;
-    private Doppler doppler;
+    private Doppler doppler1;
+    private Doppler doppler2;
     public GameObject alarm;
-
     private void Start()
     {
-        doppler = player.GetComponent<Doppler>();
+        doppler1 = player.GetComponent<Doppler>();
+        doppler2 = monster.GetComponent<Doppler>();
     }
 
     public void OpenHelp()
@@ -108,7 +109,12 @@ public class NetworkCommands : MonoBehaviour
     }
     public void PlayerState(int x)
     {
-        doppler.SendMessage("PlayerState", x);
+        doppler1.SendMessage("PlayerState", x);
+    }
+    public void MonsterState(int x)
+    {
+        doppler2.SendMessage("PlayerState", x);
+        print(x);
     }
     public void Alarms(int x)
     {
