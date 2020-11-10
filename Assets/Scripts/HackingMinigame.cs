@@ -60,10 +60,10 @@ public class HackingMinigame : MonoBehaviour
     }
     void FinishHack()
     {
-        StartCoroutine("Tooltip2");
         network.ServerSendMessage("StopHackTimer");
         var parent = GameObject.FindGameObjectWithTag("Canvas").GetComponent<NetworkCommands>();
         parent.AddPassword(GameData.password);
+        StartCoroutine("Tooltip2");
         hacking = false;
     }
     public void DestroyBlocks(int x)

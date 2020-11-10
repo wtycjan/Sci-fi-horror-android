@@ -16,7 +16,12 @@ public class UI : MonoBehaviour
     private void Start()
     {
         GameData.respawn = false;
+        ConnectionConfig config = new ConnectionConfig();
+        config.AddChannel(QosType.ReliableSequenced);
+        config.AddChannel(QosType.UnreliableSequenced);
+        config.SendDelay = 0;
         client = new NetworkClient();
+        client.Configure(config, 10);
         //GameData.IP = "192.168.8.143";
         input.text = PlayerPrefs.GetString("IP");
         client.Connect(PlayerPrefs.GetString("IP"), 25000);

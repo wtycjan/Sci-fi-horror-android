@@ -10,8 +10,10 @@ public class NetworkCommands : MonoBehaviour
     public Image hackingScreen2;
     public Image lockpicking;
     public Image lockpickingTutorial;
-    public Image monster;
-    public Image player;
+    //public Image monster;
+    //public Image player;
+    public Rigidbody2D monster;
+    public Rigidbody2D player;
     public Image endcredits;
     public GameObject pauseScreen;
     private Doppler doppler1;
@@ -19,11 +21,31 @@ public class NetworkCommands : MonoBehaviour
     public GameObject alarm;
     public GameObject timer;
     private MotionSensors sensors;
+
+    private Vector2 startPlayerAppPosition;
+    private Vector2 startMonsterAppPosition;
+    private Vector2 startPlayerServerPosition;
+    private Vector2 startMonsterServerPosition;
+    private float axTransfrom;
+    private float ayTransfrom;
+    private float bxTransfrom;
+    private float byTransfrom;
+
+
     private void Start()
     {
         doppler1 = player.GetComponent<Doppler>();
         doppler2 = monster.GetComponent<Doppler>();
         sensors = GetComponent<MotionSensors>();
+
+        startPlayerServerPosition= new Vector2(-8.9f ,- 23.16f );
+        startMonsterServerPosition = new Vector2(-26.8f ,- 6.8f);
+        startPlayerAppPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+        startMonsterAppPosition = new Vector2(monster.transform.position.x, monster.transform.position.y);
+        axTransfrom = (startMonsterServerPosition.x - startPlayerServerPosition.x) / (startMonsterAppPosition.x - startPlayerAppPosition.x);
+        ayTransfrom = (startMonsterServerPosition.y - startPlayerServerPosition.y) / (startMonsterAppPosition.y - startPlayerAppPosition.y);
+        bxTransfrom = startPlayerServerPosition.x - (axTransfrom * startPlayerAppPosition.x);
+        byTransfrom = startPlayerServerPosition.y - (ayTransfrom * startPlayerAppPosition.y);
     }
 
     public void OpenHelp()
@@ -73,15 +95,24 @@ public class NetworkCommands : MonoBehaviour
     {
         lockpicking.gameObject.SetActive(false);
     }
+    public void StartPosition(float px, float py, float mx, float my)
+    {
+        startPlayerServerPosition = new Vector2(py, px);
+        startMonsterServerPosition = new Vector2(my, mx);
+        startPlayerAppPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+        startMonsterAppPosition = new Vector2(monster.transform.position.x, monster.transform.position.y);
+        axTransfrom = (startMonsterServerPosition.x - startPlayerServerPosition.x) / (startMonsterAppPosition.x - startPlayerAppPosition.x);
+        ayTransfrom = (startMonsterServerPosition.y - startPlayerServerPosition.y) / (startMonsterAppPosition.y - startPlayerAppPosition.y);
+        bxTransfrom = startPlayerServerPosition.x - (axTransfrom * startPlayerAppPosition.x);
+        byTransfrom = startPlayerServerPosition.y - (ayTransfrom * startPlayerAppPosition.y);
+    }
     public void MonsterPosition(float x, float y)
     {
-        //magic numbers foor location adjustment
-        monster.rectTransform.localPosition = new Vector2(-9.2f * y - 143.2F, 6.7f * x + 2);
+        monster.MovePosition(new Vector2((y - bxTransfrom) / axTransfrom, (x - byTransfrom) / ayTransfrom));
     }
     public void PlayerPosition(float x, float y)
     {
-        //magic numbers foor location adjustment
-        player.rectTransform.localPosition = new Vector2(-9.2f * y - 143.2F, 6.7f * x + 2);
+        player.MovePosition(new Vector2((y - bxTransfrom) / axTransfrom, (x - byTransfrom) / ayTransfrom));
     }
     public void EndCredits()
     {

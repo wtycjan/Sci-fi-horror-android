@@ -5,7 +5,10 @@ using System.Net.Sockets;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
+
 
 public class NetworkClientUI : MonoBehaviour
 {
@@ -13,13 +16,22 @@ public class NetworkClientUI : MonoBehaviour
     public NetworkCommands commands;
     public DoorsButtton doors;
 
+    NumberFormatInfo nfi;
     private void OnGUI()
     {
         //GUI.Label(new Rect(20, Screen.height - 20, 200, 80), "Connnected:" + client.isConnected);
     }
     void Start()
     {
+        nfi = new NumberFormatInfo();
+        nfi.NumberDecimalSeparator = ".";
+
+        ConnectionConfig config = new ConnectionConfig();
+        config.AddChannel(QosType.ReliableSequenced);
+        config.AddChannel(QosType.UnreliableSequenced);
+        config.SendDelay = 0;
         client = new NetworkClient();
+        client.Configure(config, 10);
         client.RegisterHandler(888, ServerRecieveMessage);
         Connect();
     }
@@ -36,15 +48,20 @@ public class NetworkClientUI : MonoBehaviour
         StringMessage msg = new StringMessage();
         msg.value = message.ReadMessage<StringMessage>().value;
 
+        if (msg.value.Length > 13 && msg.value.Substring(0, 14) == "startPositions")
+        {
+            string[] words = msg.value.Split(' ');
+            commands.StartPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi), float.Parse(words[3], nfi), float.Parse(words[4], nfi));
+        }
         if (msg.value.Length>7 && msg.value.Substring(0, 8) == "monster:")
         {
             string[] words = msg.value.Split(' ');
-            commands.MonsterPosition(float.Parse(words[1]), float.Parse(words[2]));
+            commands.MonsterPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi));
         }
         if (msg.value.Length > 6 && msg.value.Substring(0, 7) == "player:")
         {
             string[] words = msg.value.Split(' ');
-            commands.PlayerPosition(float.Parse(words[1]), float.Parse(words[2]));
+            commands.PlayerPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi));
         }
         if (msg.value.Length > 5 && msg.value.Substring(0, 6) == "Blocks")
             commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
@@ -62,6 +79,8 @@ public class NetworkClientUI : MonoBehaviour
             commands.ClosePasswords();
         if (msg.value.Length > 3 && msg.value.Substring(0, 4) == "Pswd")
             GameData.password = (msg.value.Substring(msg.value.Length - 5));
+        if (msg.value.Length > 10 && msg.value.Substring(0, 11) == "AddPassword")
+            commands.AddPassword(msg.value.Substring(msg.value.Length - 5));
         if (msg.value == "UnlockDoor1")
             doors.UnlockDoor1();
         if (msg.value == "OpenLockpicking")
@@ -108,7 +127,7 @@ public class NetworkClientUI : MonoBehaviour
             StringMessage msg = new StringMessage();
             msg.value = bDelta +"";
             client.Send(888, msg);
-            Debug.Log("msg sent"+msg.value);
+            //Debug.Log("msg sent"+msg.value);
         }
     }
 
@@ -119,7 +138,7 @@ public class NetworkClientUI : MonoBehaviour
             StringMessage msg = new StringMessage();
             msg.value = bDelta;
             client.Send(888, msg);
-            Debug.Log("msg sent" + msg.value);
+            //Debug.Log("msg sent" + msg.value);
         }
     }
     public void ServerSendMessage(string message)
@@ -127,7 +146,7 @@ public class NetworkClientUI : MonoBehaviour
         StringMessage msg = new StringMessage();
         msg.value = message;
         client.Send(888, msg);
-        Debug.Log("msg sent" + msg.value);
+        //Debug.Log("msg sent" + msg.value);
     }
 
     public string LocalIPAddress()

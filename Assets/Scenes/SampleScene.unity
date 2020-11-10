@@ -5010,8 +5010,8 @@ MonoBehaviour:
   hackingScreen2: {fileID: 687269778}
   lockpicking: {fileID: 811918317}
   lockpickingTutorial: {fileID: 652546245}
-  monster: {fileID: 1968565091}
-  player: {fileID: 1175297097}
+  monster: {fileID: 1968565095}
+  player: {fileID: 1175297101}
   endcredits: {fileID: 1843179798}
   pauseScreen: {fileID: 1422526350}
   alarm: {fileID: 271770677}
@@ -6656,7 +6656,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 515964256}
-          m_MethodName: Door5a
+          m_MethodName: Door6a
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6684,7 +6684,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 515964256}
-          m_MethodName: Door5b
+          m_MethodName: Door6b
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9278,10 +9278,10 @@ GameObject:
   - component: {fileID: 1175297095}
   - component: {fileID: 1175297098}
   - component: {fileID: 1175297097}
-  - component: {fileID: 1175297099}
   - component: {fileID: 1175297100}
   - component: {fileID: 1175297102}
   - component: {fileID: 1175297101}
+  - component: {fileID: 1175297099}
   m_Layer: 5
   m_Name: Player Dot
   m_TagString: Player
@@ -9305,7 +9305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.8, y: -93}
+  m_AnchoredPosition: {x: -60.2, y: -156.4}
   m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175297097
@@ -9392,12 +9392,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &1175297102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13508,9 +13508,9 @@ GameObject:
   - component: {fileID: 1968565091}
   - component: {fileID: 1968565090}
   - component: {fileID: 1968565094}
-  - component: {fileID: 1968565093}
   - component: {fileID: 1968565096}
   - component: {fileID: 1968565095}
+  - component: {fileID: 1968565093}
   m_Layer: 5
   m_Name: Monster Dot
   m_TagString: Untagged
@@ -13534,7 +13534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156, y: 107}
+  m_AnchoredPosition: {x: 114, y: -44.4}
   m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1968565090
@@ -13636,12 +13636,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!58 &1968565096
 CircleCollider2D:
   m_ObjectHideFlags: 0
