@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class SensorDetect : MonoBehaviour
 {
-    public Image player, monster;
+    private Image player, monster;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<Image>().enabled = true;
+        if(collision.GetComponent<Rigidbody2D>().mass==1)   //1.1 is on the wrong floor
+            collision.GetComponent<Image>().enabled = true;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        collision.GetComponent<Image>().enabled = true;
+        if (collision.GetComponent<Rigidbody2D>().mass == 1)
+            collision.GetComponent<Image>().enabled = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -20,6 +22,8 @@ public class SensorDetect : MonoBehaviour
     }
     private void OnDisable()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Image>();
+        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Image>();
         player.enabled = false;
         monster.enabled = false;
     }

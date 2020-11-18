@@ -24,12 +24,27 @@ public class NetworkCommands : MonoBehaviour
 
     private Vector2 startPlayerAppPosition;
     private Vector2 startMonsterAppPosition;
+    [SerializeField]
     private Vector2 startPlayerServerPosition;
+    [SerializeField]
     private Vector2 startMonsterServerPosition;
+    [SerializeField]
+    private float yLevelPosition;
     private float axTransfrom;
     private float ayTransfrom;
     private float bxTransfrom;
     private float byTransfrom;
+    private float axTransfrom1;
+    private float ayTransfrom1;
+    private float bxTransfrom1;
+    private float byTransfrom1;
+    private float axTransfrom2=-999;
+    private float ayTransfrom2=-999;
+    private float bxTransfrom2=-9999;
+    private float byTransfrom2=-999;
+
+    private bool upperLevel = false;
+
 
 
     private void Start()
@@ -38,14 +53,17 @@ public class NetworkCommands : MonoBehaviour
         doppler2 = monster.GetComponent<Doppler>();
         sensors = GetComponent<MotionSensors>();
 
-        startPlayerServerPosition= new Vector2(-8.9f ,- 23.16f );
-        startMonsterServerPosition = new Vector2(-26.8f ,- 6.8f);
         startPlayerAppPosition = new Vector2(player.transform.position.x, player.transform.position.y);
         startMonsterAppPosition = new Vector2(monster.transform.position.x, monster.transform.position.y);
-        axTransfrom = (startMonsterServerPosition.x - startPlayerServerPosition.x) / (startMonsterAppPosition.x - startPlayerAppPosition.x);
-        ayTransfrom = (startMonsterServerPosition.y - startPlayerServerPosition.y) / (startMonsterAppPosition.y - startPlayerAppPosition.y);
-        bxTransfrom = startPlayerServerPosition.x - (axTransfrom * startPlayerAppPosition.x);
-        byTransfrom = startPlayerServerPosition.y - (ayTransfrom * startPlayerAppPosition.y);
+        axTransfrom1 = (startMonsterServerPosition.x - startPlayerServerPosition.x) / (startMonsterAppPosition.x - startPlayerAppPosition.x);
+        ayTransfrom1 = (startMonsterServerPosition.y - startPlayerServerPosition.y) / (startMonsterAppPosition.y - startPlayerAppPosition.y);
+        bxTransfrom1 = startPlayerServerPosition.x - (axTransfrom1 * startPlayerAppPosition.x);
+        byTransfrom1 = startPlayerServerPosition.y - (ayTransfrom1 * startPlayerAppPosition.y);
+
+        axTransfrom = axTransfrom1;
+        ayTransfrom = ayTransfrom1;
+        bxTransfrom = bxTransfrom1;
+        byTransfrom = byTransfrom1;
     }
 
     public void OpenHelp()
@@ -114,6 +132,27 @@ public class NetworkCommands : MonoBehaviour
     {
         player.MovePosition(new Vector2((y - bxTransfrom) / axTransfrom, (x - byTransfrom) / ayTransfrom));
     }
+    public void MonsterLevel(float y)
+    {
+        if (y < yLevelPosition && upperLevel)
+        {
+            monster.mass = 1.1f;
+        }
+        else if (y > yLevelPosition && !upperLevel)
+            monster.mass = 1.1f;
+        else
+            monster.mass = 1;
+
+    }
+    public void PlayerLevel(float y)
+    {
+        if (y < yLevelPosition && upperLevel)
+            player.mass = 1.1f;
+        else if (y > yLevelPosition && !upperLevel)
+            player.mass = 1.1f;
+        else
+            player.mass = 1;
+    }
     public void EndCredits()
     {
         endcredits.gameObject.SetActive(true);
@@ -154,7 +193,6 @@ public class NetworkCommands : MonoBehaviour
     public void MonsterState(int x)
     {
         doppler2.SendMessage("PlayerState", x);
-        print(x);
     }
     public void Alarms(int x)
     {
@@ -164,4 +202,41 @@ public class NetworkCommands : MonoBehaviour
     {
         timer.SendMessage("SetTimer", x);
     }
+
+    public void SwitchLevel()
+    {
+        upperLevel = !upperLevel;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Rigidbody2D>();
+        doppler1 = player.GetComponent<Doppler>();
+        doppler2 = monster.GetComponent<Doppler>();
+
+        if (axTransfrom2 == -999)
+        {
+            startPlayerAppPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+            startMonsterAppPosition = new Vector2(monster.transform.position.x, monster.transform.position.y);
+            axTransfrom2 = (startMonsterServerPosition.x - startPlayerServerPosition.x) / (startMonsterAppPosition.x - startPlayerAppPosition.x);
+            ayTransfrom2 = (startMonsterServerPosition.y - startPlayerServerPosition.y) / (startMonsterAppPosition.y - startPlayerAppPosition.y);
+            bxTransfrom2 = startPlayerServerPosition.x - (axTransfrom2 * startPlayerAppPosition.x);
+            byTransfrom2 = startPlayerServerPosition.y - (ayTransfrom2* startPlayerAppPosition.y);
+        }
+
+        if (upperLevel == false)
+        {
+            axTransfrom = axTransfrom1;
+            ayTransfrom = ayTransfrom1;
+            bxTransfrom = bxTransfrom1;
+            byTransfrom = byTransfrom1;
+        }
+        else
+        {
+            axTransfrom = axTransfrom2;
+            ayTransfrom = ayTransfrom2;
+            bxTransfrom = bxTransfrom2;
+            byTransfrom = byTransfrom2;
+        }
+            
+    }
+
+
 }

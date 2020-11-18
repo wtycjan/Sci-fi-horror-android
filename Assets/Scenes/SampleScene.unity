@@ -2091,9 +2091,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe10a72ae5f7449e9aced713193cfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  o1: {fileID: 296735328}
-  o2: {fileID: 998823547}
-  o3: {fileID: 1097310695}
+  chest: {fileID: 296735328}
+  terminal: {fileID: 998823547}
+  computer: {fileID: 1097310695}
   prefabDoppler: {fileID: 1983983293615735177, guid: 788ce10c1da944795a271933b3eb5e0b,
     type: 3}
 --- !u!1 &296019356
@@ -5016,6 +5016,9 @@ MonoBehaviour:
   pauseScreen: {fileID: 1422526350}
   alarm: {fileID: 271770677}
   timer: {fileID: 1674595020}
+  startPlayerServerPosition: {x: -8.9, y: -23.16}
+  startMonsterServerPosition: {x: -26.8, y: -6.8}
+  yLevelPosition: 0
 --- !u!114 &515964258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7728,8 +7731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!61 &928499690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10245,8 +10246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!61 &1359833762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10779,8 +10778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!61 &1467388683
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12817,8 +12814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!61 &1891475553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13103,8 +13098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!1 &1912760331
 GameObject:
   m_ObjectHideFlags: 0
@@ -13513,7 +13506,7 @@ GameObject:
   - component: {fileID: 1968565093}
   m_Layer: 5
   m_Name: Monster Dot
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14194,8 +14187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cfa13cc5a75db4395ddfd02612f3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175297097}
-  monster: {fileID: 1968565091}
 --- !u!61 &2099460845
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -48,20 +48,17 @@ public class NetworkClientUI : MonoBehaviour
         StringMessage msg = new StringMessage();
         msg.value = message.ReadMessage<StringMessage>().value;
 
-        if (msg.value.Length > 13 && msg.value.Substring(0, 14) == "startPositions")
-        {
-            string[] words = msg.value.Split(' ');
-            commands.StartPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi), float.Parse(words[3], nfi), float.Parse(words[4], nfi));
-        }
         if (msg.value.Length>7 && msg.value.Substring(0, 8) == "monster:")
         {
             string[] words = msg.value.Split(' ');
             commands.MonsterPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi));
+            commands.MonsterLevel(float.Parse(words[3], nfi));
         }
         if (msg.value.Length > 6 && msg.value.Substring(0, 7) == "player:")
         {
             string[] words = msg.value.Split(' ');
             commands.PlayerPosition(float.Parse(words[1], nfi), float.Parse(words[2], nfi));
+            commands.PlayerLevel(float.Parse(words[3], nfi));
         }
         if (msg.value.Length > 5 && msg.value.Substring(0, 6) == "Blocks")
             commands.DestroyBlocks(int.Parse(msg.value.Substring(msg.value.Length - 2)));
