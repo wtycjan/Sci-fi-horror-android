@@ -98,6 +98,10 @@ public class NetworkClientUI : MonoBehaviour
             commands.Pause();
         if (msg.value == "Unpause")
             commands.Unpause();
+        if (msg.value == "OpenElevatorConsole")
+            commands.OpenElevatorConsole();
+        if (msg.value == "CloseElevatorConsole")
+            commands.CloseElevatorConsole();
         if (msg.value.Length > 10 && msg.value.Substring(0, 11) == "PlayerState")
             commands.PlayerState(int.Parse(msg.value.Substring(msg.value.Length - 1)));
         if (msg.value.Length > 4 && msg.value.Substring(0, 5) == "Alarm")

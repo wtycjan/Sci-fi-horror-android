@@ -10,8 +10,8 @@ public class NetworkCommands : MonoBehaviour
     public Image hackingScreen2;
     public Image lockpicking;
     public Image lockpickingTutorial;
-    //public Image monster;
-    //public Image player;
+    public Image elevatorConsole;
+
     public Rigidbody2D monster;
     public Rigidbody2D player;
     public Image endcredits;
@@ -201,6 +201,15 @@ public class NetworkCommands : MonoBehaviour
     public void Timer(int x)
     {
         timer.SendMessage("SetTimer", x);
+    }
+    public void OpenElevatorConsole()
+    {
+        elevatorConsole.gameObject.SetActive(true);
+        sensors.DisableAll();
+    }
+    public void CloseElevatorConsole()
+    {
+        elevatorConsole.gameObject.SetActive(false);
     }
 
     public void SwitchLevel()
