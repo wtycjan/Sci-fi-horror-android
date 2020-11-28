@@ -88,7 +88,9 @@ public class NetworkCommands : MonoBehaviour
     }
     public void AddPassword(string pswd)
     {
-        passwords.GetComponentInChildren<Text>().text += "\n" + pswd;
+        Text text = passwords.GetComponentInChildren<Text>();
+        if(!text.text.Contains(pswd))
+            passwords.GetComponentInChildren<Text>().text += "\n" + pswd;
     }
     public void HackingStart()
     {
@@ -210,6 +212,11 @@ public class NetworkCommands : MonoBehaviour
     public void CloseElevatorConsole()
     {
         elevatorConsole.gameObject.SetActive(false);
+    }
+    public void LoadLevel(int x)
+    {
+        
+        print(x);
     }
 
     public void SwitchLevel()

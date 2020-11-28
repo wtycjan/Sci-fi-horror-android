@@ -1,8 +1,9 @@
 Android
 PlayerPath?
-C:/Users/Tycjan/Desktop/test.apk
+C:/Users/Tycjan/Desktop/astrumis.apk
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
+Assets/Scenes/SampleScene.unity
 Assets/Scenes/Level 2.unity
 SceneListEnd?
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -170,7 +171,7 @@ a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SensorDetect
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-aca36d1db430b6f34b780c717b79bb08 Assembly-CSharp.dll:.UI
+3a9891b01531abfefa1d88ade325f7bf Assembly-CSharp.dll:.UI
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ReliableOnTriggerExit
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro

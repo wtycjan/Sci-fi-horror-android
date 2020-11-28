@@ -4,4 +4,5 @@
     public static bool door1 = false;
     public static bool respawn = false;
     public static bool paused = false;
+    public static int selectedLevel = 0;
 }

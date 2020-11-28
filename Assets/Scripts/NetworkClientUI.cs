@@ -35,14 +35,7 @@ public class NetworkClientUI : MonoBehaviour
         client.RegisterHandler(888, ServerRecieveMessage);
         Connect();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(0);
-        }
-        
-    }
+
     void ServerRecieveMessage(NetworkMessage message)
     {
         StringMessage msg = new StringMessage();
@@ -102,6 +95,10 @@ public class NetworkClientUI : MonoBehaviour
             commands.OpenElevatorConsole();
         if (msg.value == "CloseElevatorConsole")
             commands.CloseElevatorConsole();
+        if (msg.value == "SavePassword")
+            commands.AddPassword(GameData.password);
+        if (msg.value.Length > 7 && msg.value.Substring(0, 9) == "LoadLevel")
+            commands.LoadLevel(int.Parse(msg.value.Substring(msg.value.Length - 1)));
         if (msg.value.Length > 10 && msg.value.Substring(0, 11) == "PlayerState")
             commands.PlayerState(int.Parse(msg.value.Substring(msg.value.Length - 1)));
         if (msg.value.Length > 4 && msg.value.Substring(0, 5) == "Alarm")
